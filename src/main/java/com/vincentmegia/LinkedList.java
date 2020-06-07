@@ -9,31 +9,26 @@ public class LinkedList {
         this.value = value;
     }
 
-    public void printAll() {
+    public void print() {
         var currentNode = this;
-        while(true) {
-            System.out.println(currentNode.getValue());
-            if (currentNode.getNext() == null) break;
-            currentNode = currentNode.getNext();
+        System.out.println(currentNode.getValue());
+        if (currentNode.getNext() != null) {
+            currentNode.getNext().print();
         }
     }
     public void add(int value) {
         var currentNode = this;
-        while(true){
-            if (currentNode.getNext() == null) {
-                currentNode.setTail(new LinkedList(value));
-                break;
-            }
-            currentNode = currentNode.getNext();
-        }
-        currentNode.setTail(new LinkedList(value));
+        if (currentNode.getNext() != null)
+            currentNode.getNext().add(value);
+        else
+            currentNode.setTail(new LinkedList(value));
     }
 
     public int size() {
-        var currentNode = this;
-        while(currentNode != null) {
-            size++;
-            currentNode = currentNode.getNext();
+            var currentNode = this;
+        var size = 1;
+        if (currentNode.getNext() != null) {
+            size += currentNode.getNext().size();
         }
         return size;
     }
@@ -41,13 +36,9 @@ public class LinkedList {
     @Override
     public String toString() {
         var currentNode = this;
-        var text = "";
-        while(true) {
-            text += currentNode.getValue() + ",";
-            if (currentNode.getNext() == null) break;
-            currentNode = currentNode.getNext();
-        }
-        text = text.substring(0, text.length() - 1);
+        var text = this.value + ",";
+        if (currentNode.getNext() != null)
+            text += currentNode.getNext().toString();
         return text;
     }
 

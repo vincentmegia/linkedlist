@@ -9,9 +9,10 @@ public class LinkedListTest {
         var parent = new LinkedList(3);
         parent.add(5);
         parent.add(10);
-//        var tail1 = parent.getTail();
-//        tail1.add(10);
-        parent.printAll();
+        var size = parent.size();
+        parent.print();
+        var text = parent.toString();
+        assertEquals(3, size);
     }
 
     @Test
@@ -29,6 +30,8 @@ public class LinkedListTest {
         parent.add(1);
         var bubbleSorter = new LinkedListSorter(parent);
         bubbleSorter.bubbleSort();
-        assertEquals("1,3,5", parent.toString());
+        var text = parent.toString();
+        text = text.substring(0, text.length() - 1);
+        assertEquals("1,3,5", text);
     }
 }
